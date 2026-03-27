@@ -39,10 +39,8 @@ RUN ln -sf /bin/true /usr/local/bin/xdg-desktop-menu && \
     ln -sf /bin/true /usr/local/bin/xdg-mime
 
 # 4. Variables de Entorno
-# Configuración de Variables de Entorno para SUMO y Veins
+# Configuración de Variables de Entorno para SUMO 
 ENV SUMO_HOME=/usr/share/sumo
-#ENV PATH="/opt/sumo/bin:${PATH}"
-#ENV LD_LIBRARY_PATH="/opt/sumo/bin"
 
 # Estas variables son globales y aseguran la estabilidad gráfica
 ENV OPP_ENV_USE_NIX=no
