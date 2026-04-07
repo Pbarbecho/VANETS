@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libxerces-c-dev cmake \
     nano git make diffutils pkg-config curl ccache clang lld gdb lldb \
     sed gawk python3-venv python3-dev \
+    libproj-dev proj-data proj-bin \
     libxml2-dev zlib1g-dev doxygen graphviz libdw-dev \
     build-essential clang bison flex perl python3 python3-pip \
     libxml2-dev zlib1g-dev default-jre curl ca-certificates \
