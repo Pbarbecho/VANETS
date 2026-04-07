@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # 1. Herramientas de sistema, compiladores y dependencias gráficas
 RUN apt-get update && apt-get install -y \
     libxerces-c-dev cmake \
+    libfox-1.6-dev libfreetype6-dev \
     nano git make diffutils pkg-config curl ccache clang lld gdb lldb \
     sed gawk python3-venv python3-dev \
     libproj-dev proj-data proj-bin \
