@@ -1,15 +1,11 @@
-
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 1. Herramientas de sistema, compiladores y dependencias gráficas
 RUN apt-get update && apt-get install -y \
-    libxerces-c-dev cmake \
-    libfox-1.6-dev libfreetype6-dev \
-    nano git make diffutils pkg-config curl ccache clang lld gdb lldb \
+    nano git make diffutils pkg-config curl ccache clang lld gdb lldb \ 
     sed gawk python3-venv python3-dev \
-    libproj-dev proj-data proj-bin \
     libxml2-dev zlib1g-dev doxygen graphviz libdw-dev \
     build-essential clang bison flex perl python3 python3-pip \
     libxml2-dev zlib1g-dev default-jre curl ca-certificates \
@@ -22,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     nemiver mpi-default-dev \
     libwebkit2gtk-4.1-0 xdg-utils \
     libfox-1.6-0 libgdal30 libproj22 libxerces-c3.2 \
+    sumo sumo-tools sumo-doc \
     && rm -rf /var/lib/apt/lists/*
 
 # 2. Módulos de Python necesarios para OMNeT++ 6.3.0
@@ -35,30 +32,18 @@ RUN pip3 install --upgrade pip setuptools && \
     "ipython>=7.0.0" \
     posix_ipc wheel opp_env
 
-
-# 3.  INSTALL SUMO
-# Clonar SUMO completo (incluye tools)  
-RUN git clone https://github.com/eclipse/sumo.git /opt/sumo
-    
-# Compilar SUMO
-WORKDIR /opt/sumo
-RUN mkdir build && cd build && \
-    cmake .. && \
-    make -j$(nproc)
-
-
-# 4. Salta el error de xdg-desktop-menu en Docker
+# 3. Salta el error de xdg-desktop-menu en Docker
 RUN ln -sf /bin/true /usr/local/bin/xdg-desktop-menu && \
     ln -sf /bin/true /usr/local/bin/xdg-icon-resource && \
     ln -sf /bin/true /usr/local/bin/xdg-mime
 
-# 4. Variables de Entorno
+# 4. Variables de Entorno 
 # Configuración de Variables de Entorno para SUMO y Veins
-ENV SUMO_HOME=/opt/sumo
-ENV PATH=$SUMO_HOME/bin:$PATH
-ENV PYTHONPATH=$SUMO_HOME/tools 
+ENV SUMO_HOME=/usr/share/sumo
+#ENV PATH="/opt/sumo/bin:${PATH}"
+#ENV LD_LIBRARY_PATH="/opt/sumo/bin"
 
-#  6. Estas variables son globales y aseguran la estabilidad gráfica
+# Estas variables son globales y aseguran la estabilidad gráfica
 ENV OPP_ENV_USE_NIX=no
 ENV LIBGL_ALWAYS_SOFTWARE=1
 ENV QT_X11_NO_MITSHM=1
@@ -67,7 +52,7 @@ ENV XDG_RUNTIME_DIR=/tmp/runtime-root
 
 WORKDIR /root/omnet
 
-# 7. Configuración del Shell para carga automática
+# 5. Configuración del Shell para carga automática
 # Creamos el .bashrc si no existe y añadimos la activación protegida
 RUN touch /root/.bashrc && \
     echo 'if [ -d "/root/omnet/.opp_env" ]; then source /root/omnet/.opp_env/bin/activate; fi' >> /root/.bashrc
