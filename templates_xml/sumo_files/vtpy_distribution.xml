@@ -1,0 +1,9 @@
+<additional>
+    <vTypeDistribution id="trafico_mixto">
+        <vType id="chevrolet_aveo" probability="0.70" color="yellow"/>
+        
+        <vType id="mitsubishi_asx" probability="0.20" color="red"/>
+        
+        <vType id="hyundai_tucson" probability="0.10" color="blue"/>
+    </vTypeDistribution>
+</additional>

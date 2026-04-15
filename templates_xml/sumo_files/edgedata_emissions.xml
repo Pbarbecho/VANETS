@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-04-10T15:58:39.310144+00:00 by Eclipse SUMO GUI v1_26_0+1074-0d0ca2f0495
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/root/omnet/sumo_files/cuenca.net.xml"/>
+        <route-files value="/root/omnet/sumo_files/rutas_generadas_distribution.rou.xml"/>
+        <additional-files value="/root/omnet/sumo_files/cuenca.poly.xml,/root/omnet/sumo_files/additional.xml,/root/omnet/sumo_files/ vtypes.add.xml"/>
+    </input>
+
+    <output>
+        <fcd-output value="/root/omnet/sumo_files/fcd.xml"/>
+        <tripinfo-output value="/root/omnet/sumo_files/tripinfo.xml"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+        <step-length value="1"/>
+    </time>
+
+    <processing>
+        <ignore-route-errors value="true"/>
+    </processing>
+
+    <emissions>
+        <device.emissions.probability value="1"/>
+    </emissions>
+
+</sumoConfiguration>
+-->
+
+<meandata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/meandata_file.xsd">
+</meandata>
