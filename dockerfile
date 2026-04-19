@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM --platform=linux/amd64 ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -52,6 +52,14 @@ RUN apt-get update && apt-get install -y \
     x11-apps \
     xvfb x11vnc \
     openbox \
+    # ── xcb: requerido por el plugin Qt xcb (sin esto Qt no arranca en Xvfb) ──
+    libxcb1 libxcb-util1 libxcb-icccm4 libxcb-image0 \
+    libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 \
+    libxcb-xinerama0 libxcb-xkb1 libxkbcommon-x11-0 \
+    # ── GTK3: requerido por el IDE Eclipse (SWT) ──
+    libgtk-3-0 libglib2.0-0 \
+    # ── dbus: evita advertencias del IDE al iniciar ──
+    dbus-x11 \
     && rm -rf /var/lib/apt/lists/*
 
 # ─────────────────────────────────────────────
@@ -85,6 +93,9 @@ ENV OPP_ENV_USE_NIX=no
 ENV LIBGL_ALWAYS_SOFTWARE=1
 ENV GALLIUM_DRIVER=llvmpipe
 ENV QT_X11_NO_MITSHM=1
+# Forzar Qt a usar el backend X11/xcb (sin esto Qt intenta Wayland y falla en Xvfb)
+ENV QT_QPA_PLATFORM=xcb
+ENV GDK_BACKEND=x11
 # Display virtual interno (Xvfb), expuesto via VNC en el puerto 5901
 ENV DISPLAY=:1
 ENV XDG_RUNTIME_DIR=/tmp/runtime-root
