@@ -18,7 +18,7 @@ Este repositorio proporciona los recursos necesarios para configurar y ejecutar 
 
 | Herramienta | Versión | Descripción |
 |---|---|---|
-| [SUMO](https://eclipse.dev/sumo/) | latest (from source) | Simulador de movilidad urbana |
+| [SUMO](https://eclipse.dev/sumo/) | 1.22 | Simulador de movilidad urbana |
 | [OMNeT++](https://omnetpp.org/) | 6.3.0 | Framework de simulación de redes |
 | [Veins](https://veins.car2x.org/) | 5.3.1 | Framework de simulación de redes vehiculares |
 | Docker | — | Contenerización del entorno |
