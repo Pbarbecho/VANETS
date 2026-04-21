@@ -1,0 +1,5 @@
+# Forzar LF en scripts de shell para que funcionen en contenedores Linux
+*.sh text eol=lf
+
+# Normalizar otros archivos de texto
+* text=auto
